@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option go_package="./delete_data/idl";
+
+package delete_data;
+
+message DeleteDataRequest{
+  string Id =1;
+}
+
+message DeleteDataTaskStatus{
+  string Message =1;
+  int32 status = 2;
+  bool Finished = 3;
+}
+
+message DeleteDataResponse{
+  string Message =1;
+  int32 Status = 2;
+  DeleteDataTaskStatus DeleteDataTaskStatus = 3;
+}
+
+service DeleteDataManage{
+  rpc DeleteData (DeleteDataRequest) returns (DeleteDataResponse){}
+}
+
+

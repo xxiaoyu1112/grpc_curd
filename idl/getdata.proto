@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+option go_package="./get_data/idl";
+
+package getdata;
+
+message GetDataRequest{
+  string Source = 1;
+  string Id = 2;
+  int32 PageSize = 3;
+  int32 PageNum = 4;
+}
+
+message GetDataResponse{
+  string Message = 1;
+  int32 Status = 2;
+  DataPage Data = 3;
+}
+message DataPage{
+  int64 total = 1;
+  repeated Data Datas = 2;
+}
+
+message Data{
+  string Id = 1;
+  string item =2;
+  string time = 3;
+}
+
+message GetOneStatusRequest{
+  string Id = 1;
+}
+message OneStatus{
+  string Message = 1;
+  int32 Status = 2;
+  bool Finished = 3;
+}
+message GetOneStatusResponse{
+  string Message = 1;
+  int32 Status = 2;
+  OneStatus OneStatus = 3;
+}
+
+service GetDataCollect{
+  rpc GetData (GetDataRequest) returns (GetDataResponse) {}
+}
+
+service GetOneStatus{
+  rpc GetOne (GetOneStatusRequest) returns (GetOneStatusResponse){}
+}

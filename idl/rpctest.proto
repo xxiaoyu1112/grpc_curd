@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option go_package="/idl";
+
+package rpctest;
+
+message CreateDataRequest{
+  string DataId = 1;
+  string DataContent= 2;
+}
+
+message CreateDataResponse{
+  string message = 1;
+  int32 status = 2;
+  RawData Data = 3;
+}
+
+message RawData{
+  string Id = 1;
+  string item =2;
+  string time = 3;
+}
+
+service CreateDataCollect{
+  rpc CreateData (CreateDataRequest) returns (CreateDataResponse) {}
+}
